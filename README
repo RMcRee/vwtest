@@ -1,0 +1,17 @@
+This test directory demonstrates what we believe to be a bug in the library implementation
+of the OAA functionality in Vowpal wabbit.
+
+(Assuming a shell cd'ed to this directory)
+
+To create the model to use for predictions and to test it on 'vwtest.txt':
+./train_test.sh
+
+To compile the C++ code called by the java program
+./createso.sh
+
+To compile and run the java code that demonstrates the problem
+./execjava.sh
+
+Correct output would be the same as batch.out, i.e. the label 15 five times. Only the first label is correct.
+Note that vwtest.txt is just the same example repeated five times. The label for the example encodes the expected
+vw label within it for easy viewing of the results.
