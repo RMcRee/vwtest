@@ -16,7 +16,6 @@ extern "C" double getPrediction(int index, const char* example_string) {
   //cerr << "Example string is " << example_string << endl;
   example *vec2 = VW::read_example(*vw[index], (char*)example_string);
   vw[index]->learn(vec2);
-  VW::finish_example(*vw[index], vec2);
   float prediction;
   if (vw[index]->p->lp.parse_label == MULTICLASS::mc_label.parse_label) {
             prediction = ((MULTICLASS::multiclass*) vec2->ld)->prediction;
@@ -24,6 +23,7 @@ extern "C" double getPrediction(int index, const char* example_string) {
   else {
             prediction = ((label_data*) vec2->ld)->prediction;
   }
+  VW::finish_example(*vw[index], vec2);
   //cerr << "example prediction = " << prediction << endl;
   return prediction;
 }
